@@ -33,11 +33,7 @@ function ChatRoom({ username }) {
 
     let uid = Math.random().toString(36).substr(2, 9);
     localStorage.setItem("userId", uid);
-
-    const response = await fetch(`${backendUrl}/api/get_user_id/`);
-    const data = await response.json();
-    localStorage.setItem("userId", data.userId);
-    return data.userId;
+    return uid;
   };
   const getCurrentTimestamp = () => {
     const now = new Date();
