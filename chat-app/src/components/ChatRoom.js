@@ -13,6 +13,7 @@ function ChatRoom({ username }) {
   const navigate = useNavigate();
   const chatContainerRef = useRef(null);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  const websocketUrl = process.env.REACT_APP_WEBSOCKET_URL;
   const [userId, setUserId] = useState("");
 
   // Fetch previous messages when the component mounts or when rejoining the room
@@ -35,6 +36,7 @@ function ChatRoom({ username }) {
     localStorage.setItem("userId", uid);
     return uid;
   };
+
   const getCurrentTimestamp = () => {
     const now = new Date();
 
@@ -53,7 +55,7 @@ function ChatRoom({ username }) {
 
   useEffect(() => {
     (async () => {
-      const socket = new WebSocket("ws://localhost:3001");
+      const socket = new WebSocket(websocketUrl);
       let uid = await getUserId();
       setUserId(uid);
 
