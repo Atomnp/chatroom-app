@@ -51,8 +51,6 @@ function ChatRoom({ username }) {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   };
 
-  console.log(getCurrentTimestamp());
-
   useEffect(() => {
     (async () => {
       const socket = new WebSocket(websocketUrl);
@@ -120,7 +118,6 @@ function ChatRoom({ username }) {
 
   const handleTyping = (e) => {
     setInputMessage(e.target.value);
-    console.log("typing,", typing);
     if (!typing) {
       console.log("typing...");
       setTyping(true);
